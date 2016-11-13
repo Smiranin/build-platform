@@ -1,10 +1,9 @@
 ## My taskRunner
-***
 
-#### install packages
+#### Install packages:
  npm i   
 
-#### run gulp
+#### Run gulp:
 gulp 
 
 
