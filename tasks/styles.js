@@ -8,8 +8,8 @@ const gulp = require('gulp'),
 module.exports = function(options) {
   return function() {
     return gulp.src(options.src)
-        //.pipe(less({plugins: [autoprefix]}))
-        .pipe(less())
+        .pipe(less({plugins: [autoprefix]}))
+        //.pipe(less())
         .pipe(gulp.dest(options.dest));
   };
 
