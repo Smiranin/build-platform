@@ -1,8 +1,15 @@
-var gulp = require('gulp'),
+const gulp = require('gulp'),
     del = require('del'),
     runSequence = require('run-sequence');
+const less = require('gulp-less');
+const babel = require('gulp-babel');
+const concat = require('gulp-concat');
+const uglify = require('gulp-uglify');
+const rename = require('gulp-rename');
+const cleanCSS = require('gulp-clean-css');
+const del = require('del');
 
-var path = require('./config/gulp.config').path;
+const path = require('./config/gulp.config').path;
 
 
 function requireTask(taskName, path, options) {
