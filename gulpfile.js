@@ -1,98 +1,32 @@
 const gulp = require('gulp'),
-    del = require('del'),
-    runSequence = require('run-sequence');
-const less = require('gulp-less');
-const babel = require('gulp-babel');
-const concat = require('gulp-concat');
-const uglify = require('gulp-uglify');
-const rename = require('gulp-rename');
-const cleanCSS = require('gulp-clean-css');
-const del = require('del');
+      gulpIf = require('gulp-if'),
+      del = require('del');
 
-const path = require('./config/gulp.config').path;
+const PATHS = require('./config/gulp.config');
+const tasksVersion = process.env.NODE_ENV || 'development';
 
+let requireTask = (taskName, path, options) => {
 
-function requireTask(taskName, path, options) {
     options = options || {};
     options.taskName = taskName;
-    gulp.task(taskName, function(callback) {
-        var task = require(path).call(this, options);
 
+    gulp.task(taskName, (callback) => {
+        let task = require(path).call(this, options);
         return task(callback);
     });
-}
+    }
 
 
-
-requireTask('html', './tasks/html', {
-    src: path.app.html,
-    dest: path.public.html
-});
-
+    requireTask('styles', './tasks/styles', {
+        src: PATHS.app.styles,
+        dest: PATHS.public.styles
+    });
 
 
-
-requireTask('styles', './tasks/styles', {
-    src: path.app.styles,
-    dest: path.public.styles
-});
+    gulp.task('clear', () => {
+         del(PATHS.clean);
+    });
 
 
-
-
-requireTask('scripts', './tasks/scripts', {
-    src: path.app.scripts,
-    dest: path.public.scripts
-});
-
-
-
-
-requireTask('static', './tasks/static', {
-    src: path.app.static,
-    dest: path.public.static
-});
-
-
-
-gulp.task('clean', function() {
-    del(path.clean);
-});
-
-
-
-gulp.task('build', function (cb) {
-    runSequence('clean',
-    ['styles', 'scripts', 'static', 'html'],
-    cb
-    )
-});
-
-
-
-gulp.task('default', function (cb) {
-    runSequence('build',
-        ['watch', 'serve'],
-        cb
-    )
-});
-
-
-
-
-gulp.task('watch', function () {
-
-    gulp.watch(path.watch.html, ['html']);
-    gulp.watch(path.watch.styles, ['styles']);
-    gulp.watch(path.watch.scripts, ['scripts']);
-    gulp.watch(path.watch.static, ['static']);
-
-});
-
-
-
-requireTask('serve', './tasks/serve', {
-    src: path.public.serve,
-    watch: path.watch.serve
-});
+    gulp.task('default', ['clear', 'styles']);
 

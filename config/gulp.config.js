@@ -1,40 +1,37 @@
-const config = {
+const PATHS = {
+    app: { //Пути откуда брать исходники
+        html: './app/html/index.html', //Синтаксис src/*.html говорит gulp что мы хотим взять все файлы с расширением .html
+        scripts: './app/scripts/index.js',//В стилях и скриптах нам понадобятся только main файлы
+        styles: './app/styles/style.sass',
+        static: './app/static/**',
+        video: './app/video/*',
+        php: './app/php/**/*.*',
+        utility: ['./app/utility_files/*', './app/utility_files/.htaccess'],
+        img: './app/static/img/**/*.*' //Синтаксис img/**/*.* означает - взять все файлы всех расширений из папки и из вложенных каталогов
+    },
 
-    path: {
+    public: { //Тут мы укажем куда складывать готовые после сборки файлы
+        html: './public',
+        scripts: './public/js',
+        styles: './public/css',
+        static: './public',
+        img: './public/img',
+        video: './public/video',
+        php: './public/php',
+        serve: './public'
+    },
 
-        app: { //Пути откуда брать исходники
-            html: './app/html/index.html', //Синтаксис src/*.html говорит gulp что мы хотим взять все файлы с расширением .html
-            scripts: './app/scripts/index.js',//В стилях и скриптах нам понадобятся только main файлы
-            styles: './app/styles/style.less',
-            static: './app/static/**',
-            video: './app/video/*',
-            php: './app/php/**/*.*',
-            utility: ['./app/utility_files/*', './app/utility_files/.htaccess'],
-            img: './app/static/img/**/*.*' //Синтаксис img/**/*.* означает - взять все файлы всех расширений из папки и из вложенных каталогов
-        },
+    watch: {
+        html: './app/html/**/*.html',
+        styles: './app/styles/**/*.less',
+        scripts: './app/scripts/**/*.js',
+        static: './app/static/**/*.*',
+        img: './app/img/**/*.*',
+        serve: './public/**/*.*'
+    },
 
-        public: { //Тут мы укажем куда складывать готовые после сборки файлы
-            html: './public',
-            scripts: './public/js',
-            styles: './public/css',
-            static: './public',
-            img: './public/img',
-            video: './public/video',
-            php: './public/php',
-            serve: './public'
-        },
-
-        watch: {
-            html: './app/html/**/*.html',
-            styles: './app/styles/**/*.less',
-            scripts: './app/scripts/**/*.js',
-            static: './app/static/**/*.*',
-            img: './app/img/**/*.*',
-            serve: './public/**/*.*'
-        },
-
-        clean: './public'
-    }
+    clear: './public'
+    
 };
 
-module.exports = config;
+module.exports = PATHS;

@@ -1,16 +1,17 @@
 const gulp = require('gulp'),
-    less = require('gulp-less'),
-    lessAutoprefix = require('less-plugin-autoprefix'),
-    autoprefix = new lessAutoprefix({ browsers: ['last 3 versions'] });
-
-
+      sass = require('gulp-sass'),
+      autoprefixer = require('gulp-autoprefixer'),
+      autoprefixConfig = {
+              browsers: ['last 3 versions'],
+              cascade: false
+          };
 
 module.exports = function(options) {
   return function() {
     return gulp.src(options.src)
-        .pipe(less({plugins: [autoprefix]}))
-        //.pipe(less())
-        .pipe(gulp.dest(options.dest));
+      .pipe(sass().on('error', sass.logError))
+      .pipe(autoprefixer(autoprefixConfig))
+      .pipe(gulp.dest(options.dest));
   };
 
 };
