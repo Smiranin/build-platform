@@ -49,16 +49,16 @@ requireTask('static', './tasks/static', {
 
 
 gulp.task('clean', function() {
-    del(path.clean);
+    return del(path.clean);
 });
 
 
 
 gulp.task('build', function (cb) {
     runSequence('clean',
-    ['styles', 'scripts', 'static', 'html'],
-    cb
-    )
+    ['static', 'styles', 'scripts'],
+    'html',
+    cb)
 });
 
 
