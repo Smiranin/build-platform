@@ -6,7 +6,7 @@ module.exports = function (options) {
 
     return function() {
         var spriteData =
-            gulp.src('./src/static/images/sprite/*.*') // путь, откуда берем картинки для спрайта
+            gulp.src('./src/assets/images/sprite/*.*') // путь, откуда берем картинки для спрайта
                 .pipe(spritesmith({
                     imgName: 'sprite.png',
                     cssName: 'sprite.styl',
@@ -18,7 +18,7 @@ module.exports = function (options) {
                     }
                 }));
 
-        spriteData.img.pipe(gulp.dest('./built/static/images/')); // путь, куда сохраняем картинку
-        spriteData.css.pipe(gulp.dest('./src/static/styles/')); // путь, куда сохраняем стили
+        spriteData.img.pipe(gulp.dest('./built/assets/images/')); // путь, куда сохраняем картинку
+        spriteData.css.pipe(gulp.dest('./src/assets/styles/')); // путь, куда сохраняем стили
     };
 }

@@ -1,39 +1,37 @@
 const config = {
 
     path: {
-
         app: { //Пути откуда брать исходники
-            html: './app/html/index.html', //Синтаксис src/*.html говорит gulp что мы хотим взять все файлы с расширением .html
-            scripts: './app/scripts/index.js',//В стилях и скриптах нам понадобятся только main файлы
-            styles: './app/styles/style.less',
-            static: './app/static/**',
-            video: './app/video/*',
-            php: './app/php/**/*.*',
-            utility: ['./app/utility_files/*', './app/utility_files/.htaccess'],
-            img: './app/static/img/**/*.*' //Синтаксис img/**/*.* означает - взять все файлы всех расширений из папки и из вложенных каталогов
+            html: './src/app/index.html', //Синтаксис src/*.html говорит gulp что мы хотим взять все файлы с расширением .html
+            scripts: '../src/app/main.js',//В стилях и скриптах нам понадобятся только main файлы
+            styles: './src/app/main.less',
+            assets: './src/assets/**',
+            video: './src/app/video/*',
+            php: './src/app/php/**/*.*',
+            utility: ['./src/app/utility_files/*', './src/app/utility_files/.htaccess'],
+            img: './src/app/assets/img/**/*.*' //Синтаксис img/**/*.* означает - взять все файлы всех расширений из папки и из вложенных каталогов
         },
 
-        public: { //Тут мы укажем куда складывать готовые после сборки файлы
-            html: './public',
-            scripts: './public/js',
-            styles: './public/css',
-            static: './public',
-            img: './public/img',
-            video: './public/video',
-            php: './public/php',
-            serve: './public'
+        dist: { //Тут мы укажем куда складывать готовые после сборки файлы
+            html: './dist',
+            scripts: './dist/js',
+            styles: './dist/css',
+            assets: './dist',
+            img: './dist/img',
+            video: './dist/video',
+            php: './dist/php',
+            serve: './dist'
         },
 
         watch: {
-            html: './app/html/**/*.html',
-            styles: './app/styles/**/*.less',
-            scripts: './app/scripts/**/*.js',
-            static: './app/static/**/*.*',
-            img: './app/img/**/*.*',
-            serve: './public/**/*.*'
+            html: './src/app/**/*.html',
+            styles: './src/app/**/*.less',
+            scripts: './src/app/**/*.js',
+            assets: './src/assets/**/*.*',
+            img: './src/assets/img/**/*.*',
+            serve: './dist/**/*.*'
         },
-
-        clean: './public'
+        clean: './dist'
     }
 };
 

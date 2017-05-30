@@ -19,7 +19,7 @@ function requireTask(taskName, path, options) {
 
 requireTask('html', './tasks/html', {
     src: path.app.html,
-    dest: path.public.html
+    dest: path.dist.html
 });
 
 
@@ -27,7 +27,7 @@ requireTask('html', './tasks/html', {
 
 requireTask('styles', './tasks/styles', {
     src: path.app.styles,
-    dest: path.public.styles
+    dest: path.dist.styles
 });
 
 
@@ -35,15 +35,15 @@ requireTask('styles', './tasks/styles', {
 
 requireTask('scripts', './tasks/scripts', {
     src: path.app.scripts,
-    dest: path.public.scripts
+    dest: path.dist.scripts
 });
 
 
 
 
-requireTask('static', './tasks/static', {
-    src: path.app.static,
-    dest: path.public.static
+requireTask('assets', './tasks/assets', {
+    src: path.app.assets,
+    dest: path.dist.assets
 });
 
 
@@ -56,7 +56,7 @@ gulp.task('clean', function() {
 
 gulp.task('build', function (cb) {
     runSequence('clean',
-    ['static', 'styles', 'scripts'],
+    ['assets', 'styles', 'scripts'],
     'html',
     cb)
 });
@@ -78,14 +78,14 @@ gulp.task('watch', function () {
     gulp.watch(path.watch.html, ['html']);
     gulp.watch(path.watch.styles, ['styles']);
     gulp.watch(path.watch.scripts, ['scripts']);
-    gulp.watch(path.watch.static, ['static']);
+    gulp.watch(path.watch.assets, ['assets']);
 
 });
 
 
 
 requireTask('serve', './tasks/serve', {
-    src: path.public.serve,
+    src: path.dist.serve,
     watch: path.watch.serve
 });
 

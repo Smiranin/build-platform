@@ -17,6 +17,6 @@ module.exports = function(options) {
                 presets: ['es2015']
             }))
             .pipe(uglify())*/
-            .pipe(gulp.dest('./public/js'));
+            .pipe(gulp.dest('./dist/js'));
     };
 };
