@@ -1,1 +1,1 @@
-# My project's README
+# The boilerplate for developing custom frontend projects.
